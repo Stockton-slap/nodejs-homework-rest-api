@@ -9,7 +9,7 @@ const getById = (id) => {
 };
 
 const addNewContact = ({ name, email, phone }) => {
-  return Contact.create({ name, email, phone });
+  return Contact.create({ name, email, phone, favorite: false });
 };
 
 const removeContact = (id) => {

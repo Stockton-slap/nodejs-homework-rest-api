@@ -1,5 +1,6 @@
 const service = require("../service/db");
 const { addSchema } = require("../schemas/addSchema");
+const { updateFavoriteSchema } = require("../schemas/updateFavoriteSchema");
 const { HttpError } = require("../helpers/helperHTTPError");
 
 const getAllContacts = async (req, res, next) => {
@@ -90,6 +91,13 @@ const changeContact = async (req, res, next) => {
 const changeContactFavorite = async (req, res, next) => {
   try {
     const { contactId } = req.params;
+    const { favorite } = req.body;
+
+    const { error } = updateFavoriteSchema.validate({ favorite });
+
+    if (error) {
+      throw HttpError(404, error.message);
+    }
 
     const contact = await service.updateStatusContact(contactId, req.body);
 
