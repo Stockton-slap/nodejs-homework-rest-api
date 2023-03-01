@@ -1,19 +1,15 @@
 const service = require("../../service/contactDb");
+const ctrlWrapper = require("../../helpers/ctrlWrapper");
 
 const deleteContact = async (req, res, next) => {
-  try {
-    const { contactId } = req.params;
-    const contact = await service.removeContact(contactId);
+  const { contactId } = req.params;
+  const contact = await service.removeContact(contactId);
 
-    if (!contactId) {
-      throw Error();
-    }
-
-    res.status(200).json(contact);
-  } catch (error) {
-    res.status(404).json({ message: "Not found." });
-    next(error);
+  if (!contactId) {
+    throw Error();
   }
+
+  res.status(200).json(contact);
 };
 
-module.exports = deleteContact;
+module.exports = ctrlWrapper(deleteContact);

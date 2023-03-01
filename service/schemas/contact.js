@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { handleMongooseError } = require("../../helpers/handleMongooseError");
+const handleMongooseError = require("../../helpers/handleMongooseError");
 
 const contactSchema = new Schema(
   {
