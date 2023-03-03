@@ -1,5 +1,5 @@
 const service = require("../../service/contactDb");
-const { HttpError } = require("../../helpers/HTTPError");
+const HttpError = require("../../helpers/HTTPError");
 const { addSchema } = require("../../schemas/addSchema");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 
