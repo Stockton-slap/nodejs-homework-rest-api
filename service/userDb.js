@@ -12,4 +12,13 @@ const addToken = (id, token) => {
   return User.findByIdAndUpdate(id, { token });
 };
 
-module.exports = { createUser, findUserByEmail, addToken };
+const findUserById = (id) => {
+  return User.findByIdAndUpdate(id, { token: "" });
+};
+
+module.exports = {
+  createUser,
+  findUserByEmail,
+  addToken,
+  findUserById,
+};

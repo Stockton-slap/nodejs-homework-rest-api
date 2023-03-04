@@ -4,7 +4,7 @@ const User = require("../service/schemas/user");
 
 const secret = process.env.SECRET_KEY;
 
-const authentificate = async (req, res, next) => {
+const auth = async (req, res, next) => {
   const { authorization = "" } = req.headers;
   const [bearer, token] = authorization.split(" ");
 
@@ -30,4 +30,4 @@ const authentificate = async (req, res, next) => {
   }
 };
 
-module.exports = authentificate;
+module.exports = auth;

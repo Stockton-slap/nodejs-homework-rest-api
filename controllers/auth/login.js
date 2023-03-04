@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, secret, options);
 
-  addToken(user._id, token);
+  await addToken(user._id, token);
 
   res.status(200).json({ token });
 };
