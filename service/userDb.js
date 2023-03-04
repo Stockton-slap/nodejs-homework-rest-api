@@ -1,7 +1,7 @@
 const User = require("../service/schemas/user");
 
 const createUser = (password, body) => {
-  return User.create({ password, ...body });
+  return User.create({ ...body, password });
 };
 
 const findUserByEmail = (email) => {
