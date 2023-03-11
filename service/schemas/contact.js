@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const handleMongooseError = require("../../helpers/handleMongooseError");
+const { regexp } = require("../../helpers/vars");
 
 const contactSchema = new Schema(
   {
@@ -10,6 +11,7 @@ const contactSchema = new Schema(
     },
     email: {
       type: String,
+      match: regexp,
     },
     phone: {
       type: String,

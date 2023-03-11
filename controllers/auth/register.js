@@ -3,6 +3,7 @@ const HttpError = require("../../helpers/HTTPError");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 const { createUser, findUserByEmail } = require("../../service/userDb");
 const bcrypt = require("bcrypt");
+const gravatar = require("gravatar");
 
 const saltRounds = 10;
 
@@ -21,9 +22,11 @@ const register = async (req, res) => {
     throw HttpError(409, "Email in use");
   }
 
+  const avatarURL = gravatar.url(email);
+
   const hashPassword = await bcrypt.hash(password, saltRounds);
 
-  const newUser = await createUser(hashPassword, req.body);
+  const newUser = await createUser(hashPassword, req.body, avatarURL);
 
   res.status(201).json({
     email: newUser.email,

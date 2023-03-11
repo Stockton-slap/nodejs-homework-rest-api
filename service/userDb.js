@@ -1,7 +1,7 @@
 const User = require("../service/schemas/user");
 
-const createUser = (password, body) => {
-  return User.create({ ...body, password });
+const createUser = (password, body, avatar) => {
+  return User.create({ ...body, password, avatarURL: avatar });
 };
 
 const findUserByEmail = (email) => {
@@ -12,13 +12,18 @@ const addToken = (id, token) => {
   return User.findByIdAndUpdate(id, { token });
 };
 
-const findUserById = (id) => {
+const changeToken = (id) => {
   return User.findByIdAndUpdate(id, { token: "" });
+};
+
+const changeAvatar = (id, avatar) => {
+  return User.findByIdAndUpdate(id, { avatar });
 };
 
 module.exports = {
   createUser,
   findUserByEmail,
   addToken,
-  findUserById,
+  changeToken,
+  changeAvatar,
 };

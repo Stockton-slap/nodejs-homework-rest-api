@@ -2,11 +2,11 @@ const HttpError = require("../helpers/HTTPError");
 const jwt = require("jsonwebtoken");
 const User = require("../service/schemas/user");
 
-const secret = process.env.SECRET_KEY;
-
 const auth = async (req, res, next) => {
   const { authorization = "" } = req.headers;
   const [bearer, token] = authorization.split(" ");
+
+  const secret = process.env.SECRET_KEY;
 
   if (bearer !== "Bearer" || !token) {
     next(HttpError(401, "Not authorized"));
